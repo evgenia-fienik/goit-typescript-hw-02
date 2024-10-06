@@ -1,0 +1,41 @@
+.header{
+display: flex;
+justify-content: center;
+background-color: rgb(53, 53, 189);
+
+
+}
+
+.form{
+   
+    margin: 0 auto;
+    width: 300px;
+    margin: 10px;
+    position: relative;
+   
+
+}
+
+.input {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    padding-left: 33px;
+    
+}
+.btnSearch {
+   position: absolute;
+   left: 0px;
+   top: 50%;
+   border: none;
+   border-radius: 5px;
+   padding: 5px;
+   background-color: white;
+   margin-right: 3px;
+   top: 1px;
+   left: 5px;
+   bottom: 1px;
+   color: rgb(109, 109, 95);
+}
