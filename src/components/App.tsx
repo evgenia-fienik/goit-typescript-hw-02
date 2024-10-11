@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, startTransition } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { fetchImagesFromAPI } from './services/fetchImages';
 import toast from 'react-hot-toast';
@@ -56,14 +56,18 @@ function App(){
       toast.error('Please enter a search term.');
       return;
     }
-    setQuery(searchQuery);
-    setPage(1);
-    setImages([]);
-    setError(null);
+    startTransition(() => {
+      setQuery(searchQuery);
+      setPage(1);
+      setImages([]);
+      setError(null);
+    });
   };
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    startTransition(() => {
+      setPage((prevPage) => prevPage + 1);
+    });
   };
 
   const openModal = (image: Image) => {
@@ -76,13 +80,15 @@ function App(){
 
   return (
     <>
-      <Toaster position="top-right"/>
+      <Toaster position="top-right" />
+      <Suspense fallback={<Loader/>}>
       <SearchBar onSubmit={handleSearch} />
       {error && <ErrorMessage message={error} />}
       <ImageGallery images={images} onImageClick={openModal} />
       {loading && <Loader />}
       {showBtn && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
-      {modal && <ImageModal image={modal} onClose={closeModal} />}
+        {modal && <ImageModal image={modal} onClose={closeModal} />}
+        </Suspense>
     </>
   );
 }
