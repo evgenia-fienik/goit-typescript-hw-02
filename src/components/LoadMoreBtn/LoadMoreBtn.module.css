@@ -5,12 +5,14 @@
 }
 
 .btn{
-   
      border: none;
     border-radius: 5px;
     color: aliceblue;
     background-color: rgb(53, 53, 189);
     padding: 7px 20px;
-    margin-bottom: 30px;
-    
+    margin-bottom: 30px; 
+}
+
+.btn:hover{
+    background-color: rgb(34, 34, 154);
 }
